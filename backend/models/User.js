@@ -36,7 +36,8 @@ const userSchema = mongoose.Schema(
     picture: {
       type: String,
       trim: true,
-      default: "",
+      default:
+        "https://res.cloudinary.com/dtq7wjpn4/image/upload/v1673163790/PDAFacebook/default_pic_vs2upu.png",
     },
     cover: {
       type: String,
