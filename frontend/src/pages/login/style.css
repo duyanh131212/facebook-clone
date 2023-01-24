@@ -4,17 +4,20 @@
 }
 
 .login_wrap {
-  height: 70vh;
+  height: 78vh;
   color: var(--color-primary);
 }
 
 .login_1 {
   width: 300px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .login_1 span {
   font-size: 20px;
+  text-align: center;
 }
 .login_2 {
   text-align: center;
@@ -33,6 +36,32 @@
   height: fit-content;
   margin: 1rem auto;
   border-radius: 10px;
+}
+.login_2_wrap button {
+  width: 100%;
+  height: 50px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.forgot_password {
+  color: var(--blue-color);
+  font-size: 14px;
+  cursor: pointer;
+}
+.forgot_password:hover {
+  text-decoration: underline;
+}
+.sign_splitter {
+  width: 100%;
+  height: 1px;
+  background: var(--bg-third);
+}
+.open_signup {
+  background: var(--green-color);
+  width: 70% !important;
+  font-size: 17px !important;
+  margin-top: 1rem;
 }
 /*-----LOGIN-----*/
 
@@ -85,37 +114,18 @@
 }
 
 /*-----FOOTER-----*/
-.login_2_wrap button {
-  width: 100%;
-  height: 50px;
-  font-size: 17px;
-  font-weight: 700;
-}
 
-.forgot_password {
-  color: var(--blue-color);
-  font-size: 14px;
-  cursor: pointer;
+/*-----DOB&GENDER ERROR ------- */
+.reg_grid .input_error {
+  width: 320px;
+  position: absolute;
+  top: 68px;
 }
-.forgot_password:hover {
-  text-decoration: underline;
+.input_error_select_large {
+  left: -100%;
+  top: 15px !important;
 }
-.sign_splitter {
-  width: 100%;
-  height: 1px;
-  background: var(--bg-third);
-}
-.open_signup {
-  background: var(--green-color);
-  width: 70% !important;
-  font-size: 17px !important;
-  margin-top: 1rem;
-}
-.p {
-  font-size: 19px;
-  font-weight: 400;
-  padding: 10px;
-}
+/*-----DOB&GENDER ERROR ------- */
 
 /*-----REGISTER-----*/
 .register {
@@ -236,3 +246,79 @@
   margin: 20px 0 10px 0;
 }
 /*-----REGISTER-----*/
+
+/*-----ERROR AND SUCCESS STYLES-------*/
+.error_text {
+  color: var(--red-color);
+  text-align: center;
+  font-size: 12px;
+}
+.success_text {
+  color: var(--green-color);
+  text-align: center;
+  font-size: 12px;
+}
+/*-----ERROR AND SUCCESS STYLES-------*/
+
+/*-----MEDIA QUERY-----*/
+@media (min-width: 530px) {
+  .login_footer_wrap {
+    max-width: 500px;
+  }
+  .register {
+    width: 400px;
+  }
+  .reg_line {
+    flex-direction: row;
+  }
+  .reg_grid select,
+  .reg_grid label {
+    width: 113px;
+  }
+  .reg_grid .input_error {
+    width: 360px;
+    position: absolute;
+  }
+}
+@media (min-width: 650px) {
+  .login_footer_wrap {
+    max-width: 650px;
+  }
+}
+@media (min-width: 850px) {
+  .login_wrap {
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .login_1 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15vh;
+    width: 50%;
+  }
+  .login_1 img {
+    width: 300px;
+    margin-left: -1.7rem;
+  }
+  .login_1 span {
+    font-size: 25px;
+    text-align: start;
+    padding: 0 5px;
+  }
+  .login_2_wrap {
+    width: 400px;
+  }
+  .input_wrap {
+    width: 100% !important;
+  }
+
+  .login_footer_wrap {
+    max-width: 900px;
+  }
+}
+
+/*-----MEDIA QUERY-----*/

@@ -3,12 +3,21 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
 import { Link } from "react-router-dom";
+import DotLoader from "react-spinners/DotLoader";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginForm() {
+export default function LoginForm({ setVisible }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const loginInfos = {
     email: "",
     password: "",
   };
+
   const [login, setLogin] = useState(loginInfos);
   const { email, password } = login;
 
@@ -25,10 +34,35 @@ export default function LoginForm() {
     password: Yup.string().required("Required"),
   });
 
+  const [error, setError] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const loginSubmit = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
+        {
+          email,
+          password,
+        }
+      );
+
+      dispatch({ type: "LOGIN", payload: data });
+      Cookies.set("user", JSON.stringify(data));
+      navigate("/");
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  };
+
   return (
     <div className="login_wrap">
       <div className="login_1">
         <img src="../../icons/facebook.svg" alt="logo" />
+        <span>Connect with friends and the world around you on Facebook.</span>
       </div>
       <div className="login_2">
         <div className="login_2_wrap">
@@ -36,10 +70,10 @@ export default function LoginForm() {
             enableReinitialize
             initialValues={{ email, password }}
             validationSchema={loginValidation}
+            onSubmit={loginSubmit}
           >
             {(formik) => (
               <Form>
-                <p className="p">Log Into Facebook</p>
                 <LoginInput
                   type="text"
                   name="email"
@@ -63,8 +97,15 @@ export default function LoginForm() {
           <Link to="/forgot" className="forgot_password">
             Forgot account?
           </Link>
+          <DotLoader color="#1876f2" loading={loading} size={30} />
+          {error && <div className="error_text">{error}</div>}
           <div className="sign_splitter"></div>
-          <button className="blue_btn open_signup">Create new account</button>
+          <button
+            className="blue_btn open_signup"
+            onClick={() => setVisible(true)}
+          >
+            Create new account
+          </button>
         </div>
       </div>
     </div>

@@ -1,0 +1,17 @@
+.register_input_wrap {
+  width: 100% !important;
+}
+
+.register_input_wrap input {
+  background: var(--bg-secondary);
+}
+
+.register_input_wrap .input_error {
+  width: 300px;
+}
+
+@media (min-width: 530px) {
+  .register_input_wrap .input_error {
+    max-width: 100%;
+  }
+}
